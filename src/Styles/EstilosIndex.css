@@ -1,0 +1,21 @@
+.fondoprincipal {
+    /*color de fondo blanco con opacidad 0.7*/
+    background-color: rgba(255, 255, 255, 0.281);
+    /*ancho automatico*/
+    width: auto;
+    /*altura minima 200 pixeles*/
+    min-height: 200px;
+    /*relleno 50 pixeles*/
+    padding: 50px;
+    /*alineacion del texto al centro*/
+    text-align: center;
+  }
+  
+  .fondo{
+    background-image: url(Media/Fondo.jpg);
+    /*centrar, fijar y tamaño 100% en imagen de fondo*/
+    
+    
+   
+    
+  }

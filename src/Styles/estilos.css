@@ -42,18 +42,7 @@ ul {
   padding: 0px;
   margin: 0px;
 }
-.fondoprincipal {
-  /*color de fondo blanco con opacidad 0.7*/
-  background-color: rgba(255, 255, 255, 0.7);
-  /*ancho automatico*/
-  width: auto;
-  /*altura minima 200 pixeles*/
-  min-height: 200px;
-  /*relleno 50 pixeles*/
-  padding: 50px;
-  /*alineacion del texto al centro*/
-  text-align: center;
-}
+
 
 .logo {
   border-radius: 5px;

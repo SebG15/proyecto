@@ -1,4 +1,4 @@
-import Logo from 'Media/LogoEmpresa.PNG'
+import Logo from 'Media/LogoEmpresa.PNG';
 import "Styles/EstilosNavbar.css" ;
 
 
