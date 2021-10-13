@@ -44,9 +44,7 @@ ul {
 }
 
 
-.logo {
-  border-radius: 5px;
-}
+
 
 .caja {
   /*flotante*/
@@ -58,15 +56,7 @@ ul {
   /*relleno 15 pixeles*/
   padding: 15px;
 }
-.horizontal {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
-.horizontal > li {
-  display: flex;
-  align-items: center;
-}
+
 .separador {
   border-top-left-radius: 20px;
   border-bottom-right-radius: 10px;
@@ -76,14 +66,8 @@ ul {
   justify-content: space-between;
   padding: 20px;
 }
-.contenedor {
-  width: 50%;
-  height: 100%;
-  display: flex;
-}
-.listas {
-  margin: 20px;
-}
+
+
 .boton_secundario {
   background-color: rgb(253, 253, 253);
   text-decoration: none;

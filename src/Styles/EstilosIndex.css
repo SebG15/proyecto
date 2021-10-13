@@ -1,6 +1,6 @@
 .fondoprincipal {
     /*color de fondo blanco con opacidad 0.7*/
-    background-color: rgba(255, 255, 255, 0.281);
+    background-color: rgba(255, 255, 255, 0.664);
     /*ancho automatico*/
     width: auto;
     /*altura minima 200 pixeles*/
@@ -13,9 +13,45 @@
   
   .fondo{
     background-image: url(Media/Fondo.jpg);
-    /*centrar, fijar y tamaño 100% en imagen de fondo*/
-    
-    
+    background-position: center;
+  background-attachment: fixed;
+  background-size: 100% 100%; 
+  margin: 0px;
    
     
+  }
+
+  .logo {
+    border-radius: 10px;
+    box-shadow: 1px 1px rgb(231, 247, 7);
+  }
+  .horizontal {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .horizontal > li {
+    display: flex;
+    align-items: center;
+  }
+  .titulo{
+      text-align: center;
+      color:#070704;
+      border: 50px;
+      background-color: red;
+      
+      
+  }
+  .contenedor {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    
+  }
+  .listas {
+    margin: 20px;
+  }
+  
+  .imagen{
+      height: 80px;
   }
