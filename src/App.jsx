@@ -1,11 +1,14 @@
 import Layouts from 'layouts/Layouts';
+import Index from 'pages/Index';
 
 
 
 function App() {
   return (
     <div className="App">
-      <Layouts></Layouts>
+      <Layouts>
+        <Index/>
+      </Layouts>
     </div>
   );
 }

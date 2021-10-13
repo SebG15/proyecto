@@ -12,11 +12,12 @@
   }
   
   .fondo{
-    background-image: url(Media/Fondo.jpg);
+    background-image: url(Media/Fondo.jpg) ;
     background-position: center;
   background-attachment: fixed;
-  background-size: 100% 100%; 
+  background-size: 100% 80%; 
   margin: 0px;
+  
    
     
   }

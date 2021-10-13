@@ -4,12 +4,14 @@ import Equipo from 'Media/equipo.jpg'
 import lenguajes from 'Media/HTML-CSS-JS.png'
 import 'Styles/EstilosIndex.css'
 
+
+
 const Index = () => {
     return (
         <div >  
                       
-            <main className="fondo">
-            <div className="fondoprincipal ">
+        <section className="fondo">
+        <div className="fondoprincipal ">
         <h1 >PROYECTO A2GRP</h1>
         <img src={Logo}  alt="Logo" className="logo" />
         <p >
@@ -94,7 +96,7 @@ const Index = () => {
               
           </ul>
       </div>
-            </main>
+            </section>
                     </div>
     )
 }

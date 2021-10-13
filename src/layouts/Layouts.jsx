@@ -1,12 +1,13 @@
 import Header from "components/Header";
 import Footer from "components/Footer";
-import Index from "pages/Index";
 
-const Layouts = () => {
+import 'Styles/estilos.css'
+
+const Layouts = ({children}) => {
     return (
-        <div>
+        <div className="maincontainer">
             <Header/>
-            <Index/>
+            <main>{children}</main>
             <Footer/>
         </div>
     )
