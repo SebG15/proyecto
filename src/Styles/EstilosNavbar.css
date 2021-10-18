@@ -6,13 +6,24 @@ ul {
 body {
   margin: 0px;
 }
+.ANDROMEDA{
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ANDROMEDA h1{
+ font-family: monospace;
+ color: rgb(9, 9, 78);
+}
 .navbar {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: rgba(4, 138, 138, 0.39);
+  background-color: rgb(255, 255, 255);
   border-bottom: 1px solid gray;
-  box-shadow: 1px 1px rgb(230, 217, 37);
+  box-shadow: 1px 1px rgba(28, 82, 197, 0.527);
 }
 .navbar > li {
   display: flex;
@@ -31,7 +42,7 @@ body {
   border-radius: 10px;
   font-weight: bolder;
   padding: 10px 12px;
-  background-color: rgb(197, 221, 61);
+  background-color: rgb(63, 121, 228);
 }
 .boton_primario:hover {
   cursor: pointer;

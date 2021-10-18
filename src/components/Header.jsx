@@ -1,5 +1,6 @@
-import Logo from 'Media/LogoEmpresa.PNG';
+import Logo from 'Media/logo.png';
 import "Styles/EstilosNavbar.css" ;
+import { Link } from 'react-router-dom';
 
 
 
@@ -7,21 +8,33 @@ const Header = () => {
     return (
         
         <header>
+          
         <ul className="navbar">
+          <div class="ANDROMEDA">
+              <h1>A N D R Ó M E D A</h1>
+          </div>
           <li>
 
             <img src={Logo}  className= "logonavbar" alt="Logo"/>
           </li>
           <li>
-            <button className="boton_primario" >
-              <a href="https://lms.misiontic2022udea.com/mod/assign/view.php?id=25436" className="quitarlinea" >
-              Solicitudes del proyecto</a>
+          <Link to= "/InicioSesion">
+            <button className="boton_primario quitarlinea" >
+              Iniciar Sesion
             </button>
+            </Link>
           </li>
           <li >
-            <button className="boton_primario">
-              <a href="indexlog.html" className="quitarlinea">
-                Inicie Sesion para realizar las compras</a>
+            <Link to ="/Productos">
+            <button className="boton_primario quitarlinea">              
+               Productos
+            </button>
+            </Link>
+          </li>
+          <li >
+            <button className="boton_primario quitarlinea">
+              
+               Quienes Somos
             </button>
           </li>
 
