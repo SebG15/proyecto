@@ -18,7 +18,7 @@ const Header = () => {
             <img src={Logo}  className= "logonavbar" alt="Logo"/>
           </li>
           <li>
-          <Link to= "/InicioSesion">
+          <Link to= "/login">
             <button className="boton_primario quitarlinea" >
               Iniciar Sesion
             </button>

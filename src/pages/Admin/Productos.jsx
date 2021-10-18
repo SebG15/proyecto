@@ -3,7 +3,7 @@ import React from 'react'
 const Productos = () => {
     return (
         <div>
-            Esta es la pagina de los Productos
+            Esta es la pagina de la administracion de Productos
         </div>
     )
 }

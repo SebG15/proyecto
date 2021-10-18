@@ -1,13 +1,20 @@
 import Layouts from 'layouts/Layouts';
 import Index from 'pages/Index';
 import InicioSesion from 'pages/Admin/InicioSesion';
+import Admin from 'pages/Admin/Admin';
+import Registro from 'pages/Admin/Registro';
+import Productos from 'pages/Admin/Productos';
+
+
 import 'Styles/estilos.css'
+
 import {
   BrowserRouter as Router,
   Switch,
   Route  
 } from "react-router-dom";
-import Productos from 'pages/Admin/Productos';
+
+import PrivateLayout from 'layouts/PrivateLayout';
 
 
 
@@ -15,26 +22,44 @@ function App() {
   return (
     <div className="App">
       <Router>
-      
         <Switch>
-          <Route path="/InicioSesion">
-            <InicioSesion/>
+          <Route path={['/admin','/admin/productos']}>
+          <PrivateLayout>
+              <Switch>
+                <Route path='/admin/productos'>
+                  <Productos/>
+                </Route>
+                <Route path='/admin'>
+                <Admin/>
+                </Route>
+              </Switch>
+            </PrivateLayout>
           </Route>
-          <Route path = "/Productos">
-            <Productos/>
+          <Route path={['/login','/registro']}>
+            <Switch>
+              <Route path='/login'>
+              <InicioSesion/>
+              </Route>
+              <Route path='/registro'>
+                <Registro/>
+              </Route>
+            </Switch>
           </Route>
-          
-        
-        <Layouts>
-        <Route path ="/">
-           <Index/>
-           </Route>
-       
-      </Layouts>
-      </Switch>
+          <Route path ={['/']}>
+            <Layouts>
+              <Switch>
+                <Route path='/'>
+                  <Index/>
+                </Route>
+                </Switch>
+
+
+            </Layouts>
+          </Route>
+        </Switch>
 
       </Router>
-      
+
     </div>
   );
 }
