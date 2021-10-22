@@ -1,6 +1,9 @@
+import { nanoid } from 'nanoid';
 import React, {useEffect,useState,useRef} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'Styles/EstilosDeTabla.css'
+
   
 
 
@@ -85,35 +88,79 @@ const TablaProductos =({listaproductos}) => {
     }
 
     )
+    const submitEdit=(e)=>{
+        e.preventDefault();
+        console.log(e);
+    }
     return (
         <div className="flex flex-col items-center justify-center">
             <h2 className="text-2xl font-semibold text-gray-900 ">PEDIDOS</h2>
-            <table>
+            <form onSubmit={submitEdit} >
+            <table className="tabla">
             <thead>
                 <tr>
                     <th>Tipo de vela</th>
                     <th>Tamaño</th>
                     <th>Olor</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {listaproductos.map((Productos) => {
                     return (
-                        <tr>
-                            <td>{Productos.tipo}</td>
-                            <td>{Productos.tamaño}</td>
-                            <td>{Productos.aroma}</td>
-                        </tr>
-                    ) ;               
+                        <FilaProducto key={nanoid()} Productos={Productos}/>
+                    ) ;
                 })}
 
             </tbody>
         </table>
 
+            </form>
+          
+
         </div>
         
     )
 };
+
+const FilaProducto =({Productos})=>{
+    const [Editar,setEditar]=useState(false)
+    return(
+        <tr >
+            {Editar?(
+                <>
+                <td><input type="text" defaultValue={Productos.tipo} /></td>
+                <td><input type="text" defaultValue={Productos.tamaño} /></td>
+                <td><input type="text" defaultValue={Productos.aroma} /></td>
+                </>
+         
+            ):(
+            <>
+                <td>{Productos.tipo}</td>
+                <td>{Productos.tamaño}</td>
+                <td>{Productos.aroma}</td>
+            
+            </>
+            )}
+            <td>
+                <div className="flex w-full justify-around">
+                    {Editar? (
+                    <button type="submit">
+                        <i onClick={()=>setEditar(!Editar)} class="fas fa-check-circle text-green-500 hover:text-green-800"></i>
+
+                    </button>)
+                    
+                    :(
+                    <i onClick={()=>setEditar(!Editar)} className="fas fa-edit text-green-500 hover:text-green-800 "></i>
+                )}
+                    <i className="fas fa-trash-alt text-red-400 hover:text-red-700"></i>
+                </div>
+            </td>
+        </tr>
+
+    )
+}
+
 const FormularioProducto =({setMostrarTabla,listaproductos, setProductos}) =>
  {
     const form = useRef(null);
