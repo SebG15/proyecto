@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Google from 'Media/google_logo.png';
+//import Google from 'Media/google_logo.png';
+import { GoogleLogin } from 'react-google-login';
 import Logo from 'Media/logo.png'
 const InicioSesion = () => {
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
+
     return (
         <div className= 'flex w-full flex-col items-center  py-4'>
             <header>
@@ -11,7 +16,7 @@ const InicioSesion = () => {
       </div>
             </header>
             <h2 className='m3 text-center text-3xl font-extrabold text-gray-900'>
-                Inicia Sesion</h2>
+                Inicia Sesión</h2>
             <form className='mt-8 max-md'>
                 <div>
                     <input 
@@ -35,7 +40,7 @@ const InicioSesion = () => {
                             className='h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded'
                         />
                          <label htmlFor='remember-me' className='ml-1 block text-sm text-gray-900'>
-                            Recodarme
+                            Recordarme
                         </label>
                                     
                     </div>
@@ -51,9 +56,8 @@ const InicioSesion = () => {
               type='submit'
               className='mt-4 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
             >
-              <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
-                
-              </span>
+              <span className='absolute left-0 inset-y-0 flex items-center pl-3'></span>
+
               <Link to='/admin'>Iniciar sesión</Link>
             </button>
                 </div>
@@ -66,11 +70,16 @@ const InicioSesion = () => {
         <div>
           <button
             type='submit'
-            className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
-          >
+            className='group relative w-full flex justify-center py-2 px-4'>
             <div className='flex items-center justify-start'>
-              <img src={Google} alt='Logo Google' className='h-6 w-6' />
-              <span className='mx-4'>Continúa con Google</span>
+            <GoogleLogin
+            clientId="290127191261-hvj1g6sh2r98utuium56d35lhv02rsjc.apps.googleusercontent.com"
+            buttonText="Continua con Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+          />
+             
             </div>
           </button>
         </div>
