@@ -2,7 +2,7 @@ import Layouts from 'layouts/Layouts';
 import Index from 'pages/Index';
 import InicioSesion from 'pages/Admin/InicioSesion';
 import Admin from 'pages/Admin/Admin';
-import Registro from 'pages/Admin/Registro';
+import Registro from 'pages/Admin/Usuarios';
 import Productos from 'pages/Admin/Productos';
 
 
@@ -36,12 +36,12 @@ function App() {
               </Switch>
             </PrivateLayout>
           </Route>
-          <Route path={['/login','/registro']}>
+          <Route path={['/login','/usuarios']}>
             <Switch>
               <Route path='/login'>
               <InicioSesion/>
               </Route>
-              <Route path='/registro'>
+              <Route path='/usuarios'>
                 <Registro/>
               </Route>
             </Switch>

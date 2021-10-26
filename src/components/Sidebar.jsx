@@ -14,7 +14,7 @@ const Sidebar = () => {
             <div className="my-4">
             <Ruta ruta ="/admin/perfil" nombre='Perfil' icono="fas fa-user"/>
             <Ruta ruta='/admin/productos' nombre='Pedidos' icono="fas fa-cart-plus"/> 
-            <Ruta ruta ="/admin/perfil"nombre='Usuarios'  icono="fas fa-users"/>
+            <Ruta ruta ="/admin/usuarios"nombre='Usuarios'  icono="fas fa-users"/>
 
             </div>
             
