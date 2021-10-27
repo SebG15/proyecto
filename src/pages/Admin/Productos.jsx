@@ -1,26 +1,9 @@
 import { nanoid } from 'nanoid';
+import axios from "axios";
 import React, {useEffect,useState,useRef} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'Styles/EstilosDeTabla.css'
-
-  
-
-
-// back
-const productosbackend=[
-    {
-    tipo:"Paz",
-    tamaño:"Grande",
-    aroma: "limon"
-  },
-  {
-    tipo:"Armonia",
-    tamaño:"Pequeño",
-    aroma: "Vainilla"
-  
-  },
-  ]
 
 
 
@@ -32,8 +15,17 @@ const Productos = () => {
 
     useEffect(()=>{
 //Obtener lista desde el front
-setProductos(productosbackend);
-    },[]
+const options = {method: 'GET', url: 'http://localhost:5000/productos'};
+
+axios.request(options)
+.then(function (response) {
+  setProductos(response.data);
+
+}).catch(function (error) {
+  console.error(error);
+});
+
+    },[MostrarTabla]
     )
 
     useEffect(()=> {
@@ -83,6 +75,7 @@ setProductos(productosbackend);
     )
 }
 const TablaProductos =({listaproductos}) => {
+    
     useEffect( ()=>{
         console.log('Listado del back', listaproductos);
     }
@@ -130,14 +123,14 @@ const FilaProducto =({Productos})=>{
             {Editar?(
                 <>
                 <td><input type="text" defaultValue={Productos.tipo} /></td>
-                <td><input type="text" defaultValue={Productos.tamaño} /></td>
+                <td><input type="text" defaultValue={Productos.tamanio} /></td>
                 <td><input type="text" defaultValue={Productos.aroma} /></td>
                 </>
          
             ):(
             <>
                 <td>{Productos.tipo}</td>
-                <td>{Productos.tamaño}</td>
+                <td>{Productos.tamanio}</td>
                 <td>{Productos.aroma}</td>
             
             </>
@@ -146,7 +139,7 @@ const FilaProducto =({Productos})=>{
                 <div className="flex w-full justify-around">
                     {Editar? (
                     <button type="submit">
-                        <i onClick={()=>setEditar(!Editar)} class="fas fa-check-circle text-green-500 hover:text-green-800"></i>
+                        <i onClick={()=>setEditar(!Editar)} className="fas fa-check-circle text-green-500 hover:text-green-800"></i>
 
                     </button>)
                     
@@ -166,7 +159,7 @@ const FormularioProducto =({setMostrarTabla,listaproductos, setProductos}) =>
     const form = useRef(null);
     
     
-   const submitForm = (e) =>{
+   const submitForm = async (e) =>{
        e.preventDefault();
        const fd = new FormData (form.current);
 
@@ -175,20 +168,34 @@ const FormularioProducto =({setMostrarTabla,listaproductos, setProductos}) =>
         nuevoProducto[key]=value;
 
     });
+    const options = {
+        method: 'POST',
+        url: 'http://localhost:5000/productos/nuevo',
+        headers: {'Content-Type': 'application/json'},
+        data: {tipo: nuevoProducto.tipo  , tamanio: nuevoProducto.tamanio , aroma: nuevoProducto.aroma}
+      };
+
+    await axios.request(options).then(function (response) {
+        toast.success('¡Pedido enviado!',{
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            });
+        console.log(response.data);
+      }).catch(function (error) {
+        toast.error('¡El pedido no fue enviado!')
+        console.error(error);
+      });
 
     setMostrarTabla(true)
-    toast.success('¡Pedido enviado!',{
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        });
     
     
-    setProductos([...listaproductos,nuevoProducto]);
+    
+    /////////////////////aquiiiiiiiiiiiii
    };
 
     return <div className="flex flex-col items-center justify-center">
@@ -210,12 +217,12 @@ const FormularioProducto =({setMostrarTabla,listaproductos, setProductos}) =>
                     </select>
                     
                 </label>
-                <label htmlFor="tamaño">
+                <label htmlFor="tamanio">
                     Tamaño de la vela
                     <select  
                     
                     className= "bg-gray-50 border border-blue-600 p-2 rounded-lg m-2 "
-                     name="tamaño"
+                     name="tamanio"
                      required 
                      defaultValue={''}>                    
                         <option disabled value={''} >Seleccionar</option>
