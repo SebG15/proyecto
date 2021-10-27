@@ -75,20 +75,16 @@ axios.request(options)
     )
 }
 const TablaProductos =({listaproductos}) => {
-    
+    const form= useRef(null);
     useEffect( ()=>{
-        console.log('Listado del back', listaproductos);
-    }
+        console.log('Listado del back', [listaproductos]);
+    },[listaproductos] ); 
 
-    )
-    const submitEdit=(e)=>{
-        e.preventDefault();
-        console.log(e);
-    }
+    
     return (
         <div className="flex flex-col items-center justify-center">
             <h2 className="text-2xl font-semibold text-gray-900 ">PEDIDOS</h2>
-            <form onSubmit={submitEdit} >
+            
             <table className="tabla">
             <thead>
                 <tr>
@@ -108,7 +104,7 @@ const TablaProductos =({listaproductos}) => {
             </tbody>
         </table>
 
-            </form>
+            
           
 
         </div>
@@ -117,14 +113,35 @@ const TablaProductos =({listaproductos}) => {
 };
 
 const FilaProducto =({Productos})=>{
-    const [Editar,setEditar]=useState(false)
+    const [Editar,setEditar]=useState(false);
+    const [infoNuevoProducto, setinfoNuevoProducto]= useState({
+        tipo: Productos.tipo,
+        tamanio: Productos.tamanio,
+        aroma:Productos.aroma,
+    })
+    const actualizarProducto = async()=>{
+        console.log();
+        const options = {
+            method: 'PATCH',
+            url: 'http://localhost:5000/productos/editar',
+            headers: {'Content-Type': 'application/json'},
+            data: {...infoNuevoProducto, id:Productos._id},
+          };
+          
+          await axios.request(options).then(function (response) {
+            toast.success('¡Pedido actualizado!');
+            console.log(response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
+    }
     return(
         <tr >
             {Editar?(
                 <>
-                <td><input type="text" defaultValue={Productos.tipo} /></td>
-                <td><input type="text" defaultValue={Productos.tamanio} /></td>
-                <td><input type="text" defaultValue={Productos.aroma} /></td>
+                <td><input type="text" value={infoNuevoProducto.tipo} onChange={e=>setinfoNuevoProducto({...infoNuevoProducto,tipo:e.target.value})}/></td>
+                <td><input type="text" value={infoNuevoProducto.tamanio} onChange={e=>setinfoNuevoProducto({...infoNuevoProducto,tamanio:e.target.value})}/></td>
+                <td><input type="text" value={infoNuevoProducto.aroma} onChange={e=>setinfoNuevoProducto({...infoNuevoProducto,aroma:e.target.value})} /></td>
                 </>
          
             ):(
@@ -138,10 +155,11 @@ const FilaProducto =({Productos})=>{
             <td>
                 <div className="flex w-full justify-around">
                     {Editar? (
-                    <button type="submit">
-                        <i onClick={()=>setEditar(!Editar)} className="fas fa-check-circle text-green-500 hover:text-green-800"></i>
+                    
+                    <i onClick={()=>actualizarProducto()} 
+                    className="fas fa-check-circle text-green-500 hover:text-green-800"></i>
 
-                    </button>)
+                    )
                     
                     :(
                     <i onClick={()=>setEditar(!Editar)} className="fas fa-edit text-green-500 hover:text-green-800 "></i>
