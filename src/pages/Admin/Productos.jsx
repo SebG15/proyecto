@@ -129,9 +129,27 @@ const FilaProducto =({Productos})=>{
           };
           
           await axios.request(options).then(function (response) {
-            toast.success('¡Pedido actualizado!');
+            toast.success('¡Pedido actualizado! Actualiza la pagina');
             console.log(response.data);
+            setEditar(false);
           }).catch(function (error) {
+              toast.error('No se pudo actualizar producto');
+            console.error(error);
+          });
+    }
+    const setEliminarProducto =async()=>{
+        const options = {
+            method: 'DELETE',
+            url: 'http://localhost:5000/productos/eliminar',
+            headers: {'Content-Type': 'application/json'},
+            data: {id:Productos._id},
+          };
+          
+          await axios.request(options).then(function (response) {
+            console.log(response.data);
+            toast.success('¡Pedido eliminado! Actualiza la pagina');
+          }).catch(function (error) {
+            toast.error('No se pudo eliminar producto');
             console.error(error);
           });
     }
@@ -164,7 +182,7 @@ const FilaProducto =({Productos})=>{
                     :(
                     <i onClick={()=>setEditar(!Editar)} className="fas fa-edit text-green-500 hover:text-green-800 "></i>
                 )}
-                    <i className="fas fa-trash-alt text-red-400 hover:text-red-700"></i>
+                    <i onClick={()=>setEliminarProducto()} className="fas fa-trash-alt text-red-400 hover:text-red-700"></i>
                 </div>
             </td>
         </tr>
